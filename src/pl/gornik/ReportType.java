@@ -4,4 +4,7 @@ public enum ReportType {
     DAMAGE,
     RENOVATION,
     CONSERVATION;
+
+    ReportType() {
+    }
 }

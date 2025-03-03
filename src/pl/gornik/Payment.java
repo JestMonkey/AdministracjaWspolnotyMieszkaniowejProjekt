@@ -12,4 +12,11 @@ public class Payment {
         this.paymentType = paymentType;
         this.paymentDate = LocalDate.now();
     }
+
+    public void processPayment(double price, PaymentType paymentType){
+        this.price = price;
+        this.paymentType = paymentType;
+        this.paymentDate = LocalDate.now();
+        System.out.println("Przetworzono płatność o wysokości " + price + " poprzez " + paymentType);
+    }
 }

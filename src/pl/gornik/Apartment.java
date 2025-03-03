@@ -21,4 +21,10 @@ public abstract class Apartment {
         this.number = number;
         this.address = address;
     }
+
+    //add remove tenants, payment managment?
+
+    public int getNumber() {
+        return number;
+    }
 }
