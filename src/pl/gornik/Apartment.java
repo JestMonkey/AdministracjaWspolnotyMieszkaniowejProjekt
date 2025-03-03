@@ -100,4 +100,10 @@ public class Apartment {
     public Owner getOwner() {
         return owner;
     }
+
+    //add remove tenants, payment managment?
+
+    public int getNumber() {
+        return number;
+    }
 }

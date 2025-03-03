@@ -1,4 +1,4 @@
-package pl.gornik;
+package pl.gornik.model.payment;
 
 import java.time.LocalDate;
 
@@ -11,13 +11,6 @@ public class Payment {
         this.price = price;
         this.paymentType = paymentType;
         this.paymentDate = LocalDate.now();
-    }
-
-    public void processPayment(double price, PaymentType paymentType){
-        this.price = price;
-        this.paymentType = paymentType;
-        this.paymentDate = LocalDate.now();
-        System.out.println("Przetworzono płatność o wysokości " + price + " poprzez " + paymentType);
     }
 
     public double getPrice() {
