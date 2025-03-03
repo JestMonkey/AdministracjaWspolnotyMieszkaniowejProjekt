@@ -10,5 +10,5 @@ public class Owner extends Person {
         System.out.println("Dane właściciela:\nImię: " + name + "\nNazwisko: " + surname);
     }
 
-    //
+
 }

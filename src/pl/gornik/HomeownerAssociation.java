@@ -32,7 +32,18 @@ public class HomeownerAssociation {
 
     public void removeOwner(Owner owner){owners.remove(owner);}
 
+    public Owner findOwnerByEmail(String email){
+        for (Owner owner : owners){
+            if (owner.getEmail().equals(email)) {
+                return owner;
+            }
+        }
+        return null;
+    }
+
     public void addServiceRequest(ServiceRequest request){serviceRequests.add(request);}
+
+    public void removeServiceRequest(ServiceRequest request){serviceRequests.remove(request);}
 
     //
     //public List<ServiceRequest> getServiceRequestsByType(ReportType type) {

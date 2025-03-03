@@ -1,6 +1,6 @@
 package pl.gornik;
 
-public abstract class Apartment {
+public class Apartment {
     private int number;
     private String address;
     private double surface;
