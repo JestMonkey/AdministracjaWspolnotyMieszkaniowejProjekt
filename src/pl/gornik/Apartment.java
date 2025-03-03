@@ -1,4 +1,9 @@
-package pl.gornik;
+package pl.gornik.model;
+
+import pl.gornik.model.person.Owner;
+import pl.gornik.model.payment.Payment;
+import pl.gornik.model.payment.PaymentType;
+import pl.gornik.model.person.Tenant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +29,6 @@ public class Apartment {
         this.payments = new ArrayList<>();
     }
 
-    public Apartment(int number, String address) {
-        this.number = number;
-        this.address = address;
-        this.tenants = new ArrayList<>();
-    }
-
-    // add, remove, view tenants
     public void addTenant(Tenant tenant) {
         if (tenants.size() < numberOfTenants) {
             tenants.add(tenant);
@@ -39,15 +37,6 @@ public class Apartment {
         }
     }
 
-    public void removeTenant(Tenant tenant) {
-        tenants.remove(tenant);
-        System.out.println("Usunięto lokatora: " + tenant.getName() + " " + tenant.getSurname());
-    }
-    // returns list
-    public List<Tenant> getTenants() {
-        return tenants;
-    }
-    // returns details
     public void displayTenants() {
         if (tenants.isEmpty()) {
             System.out.println("Mieszkanie aktualnie nie ma lokatorów");
@@ -59,7 +48,6 @@ public class Apartment {
         }
     }
 
-    // payment managment
     public void registerRentPayment(double amount, PaymentType paymentType) {
         if (amount >= rent) {
             Payment payment = new Payment(amount, paymentType);
@@ -79,6 +67,21 @@ public class Apartment {
                 System.out.println("Kwota: " + payment.getPrice() + ", Typu: " + payment.getPaymentType() + ", Data: " + payment.getPaymentDate());
             }
         }
+    }
+
+    public double getTotalRentCollected() {
+        double total = 0;
+        for (Payment payment : payments) {
+            total += payment.getPrice();
+        }
+        return total;
+    }
+
+    public double getOutstandingRent() {
+        // Zakładając, że czynsz jest płacony co miesiąc i każda płatność to jeden miesiąc
+        double totalRentCollected = getTotalRentCollected();
+        double expectedRent = rent * payments.size();
+        return expectedRent - totalRentCollected;
     }
 
     public int getNumber() {
@@ -101,9 +104,7 @@ public class Apartment {
         return owner;
     }
 
-    //add remove tenants, payment managment?
+    public List<Tenant> getTenants() { return tenants; }
 
-    public int getNumber() {
-        return number;
-    }
+    public int getNumberOfTenants() { return numberOfTenants; }
 }
