@@ -9,4 +9,6 @@ public class Owner extends Person {
     public void displayInfo() {
         System.out.println("Dane właściciela:\nImię: " + name + "\nNazwisko: " + surname);
     }
+
+    //
 }
