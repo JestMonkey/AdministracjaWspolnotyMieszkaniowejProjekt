@@ -1,4 +1,4 @@
-package pl.gornik;
+package pl.gornik.model.person;
 
 public abstract class Person {
     protected String name;
@@ -27,7 +27,4 @@ public abstract class Person {
         return email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
 }
