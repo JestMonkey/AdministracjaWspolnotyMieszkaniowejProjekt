@@ -1,8 +1,11 @@
 package pl.gornik;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
+=======
+>>>>>>> 3a0482ab96a10fb74b0e93ee37acadbf70168505
 public class Apartment {
     private int number;
     private String address;
@@ -99,5 +102,11 @@ public class Apartment {
 
     public Owner getOwner() {
         return owner;
+    }
+
+    //add remove tenants, payment managment?
+
+    public int getNumber() {
+        return number;
     }
 }
