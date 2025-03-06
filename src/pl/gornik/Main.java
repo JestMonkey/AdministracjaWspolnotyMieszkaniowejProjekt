@@ -13,28 +13,19 @@ public class Main {
 
         HomeownerAssociation hoa = new HomeownerAssociation(apartmentList, ownerList, serviceRequestList);
 
-<<<<<<< HEAD
-=======
-        //Owner owner1
->>>>>>> 3a0482ab96a10fb74b0e93ee37acadbf70168505
         Owner owner1 = new Owner("Alicja", "Baran", "alicjabaran@gmail.com", "123456789");
         Owner owner2 = new Owner("Kamil", "Korzeń", "kamilkorzen@gmail.com", "243213456");
         Owner owner3 = new Owner("Andrzej", "Fach", "andrzejfach@gmail.com", "539104562");
         ownerList.add(owner1);
         ownerList.add(owner2);
         ownerList.add(owner3);
-<<<<<<< HEAD
 
-=======
-        //Apartment apartment1
->>>>>>> 3a0482ab96a10fb74b0e93ee37acadbf70168505
         Apartment apartment1 = new Apartment(14, "ul. Jakaś 4", 70, 950, owner1, 4);
         Apartment apartment2 = new Apartment(6, "ul. Jakaś 4", 55, 600, owner2, 2);
         Apartment apartment3 = new Apartment(9, "ul. Jakaś 4", 40, 400, owner3, 1);
         apartmentList.add(apartment1);
         apartmentList.add(apartment2);
         apartmentList.add(apartment3);
-<<<<<<< HEAD
 
         Tenant tenant1 = new Tenant("Jan", "Kowalski", "jankowalski@gmail.com", "123123123", apartment1);
         Tenant tenant2 = new Tenant("Anna", "Nowak", "annanowak@gmail.com", "456456456", apartment1);
@@ -57,6 +48,7 @@ public class Main {
             int selectedOption = scanner.nextInt();
             scanner.nextLine(); // clear scannera
             int apartmentNumber = 0;
+
             switch (selectedOption) {
                 case 1:
                     // Info o właścicielu
@@ -152,14 +144,6 @@ public class Main {
                     System.out.println("Nieprawidłowy wybór.");
             }
         }
-=======
-        //Tenant tenant1
-
-        System.out.println("Wybierz pożądaną informacje: ");
-        System.out.println("1 - Info o właścicielu");
-        System.out.println("2 - Info o mieszkaniu");
-        System.out.println("3 - Wypis wszystkich właścicieli i mieszkań");
->>>>>>> 3a0482ab96a10fb74b0e93ee37acadbf70168505
 
         //ServiceRequest ...
 
