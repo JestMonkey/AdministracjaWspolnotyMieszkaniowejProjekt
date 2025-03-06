@@ -14,4 +14,8 @@ public class ServiceRequest {
         this.reportDate = reportDate;
         this.reportType = reportType;
     }
+
+    public ReportType getReportType(){
+        return reportType;
+    }
 }
