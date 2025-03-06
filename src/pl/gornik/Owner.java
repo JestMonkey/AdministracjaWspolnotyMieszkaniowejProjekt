@@ -7,6 +7,9 @@ public class Owner extends Person {
 
     @Override
     public void displayInfo() {
-        System.out.println("Dane właściciela:\nImię: " + name + "\nNazwisko: " + surname);
+        System.out.println("Dane właściciela:\nImię: " + name + "\nNazwisko: " + surname
+                + "\nEmail: " + email + "\nNumer telefonu: " + phoneNumber + "\n");
     }
+
+
 }
