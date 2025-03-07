@@ -1,5 +1,6 @@
 package pl.gornik;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -44,7 +45,9 @@ public class Main {
             System.out.println("4 - Info o lokatorach");
             System.out.println("5 - Zarejestruj płatność czynszu");
             System.out.println("6 - Wyświetl historię płatności");
-            System.out.println("7 - Wyjście");
+            System.out.println("7 - Zarządzaj zgłoszeniami serwisowymi");
+            System.out.println("8 - Generuj raport finansowy");
+            System.out.println("9 - Wyjście");
             int selectedOption = scanner.nextInt();
             scanner.nextLine(); // clear scannera
             int apartmentNumber = 0;
@@ -109,12 +112,12 @@ public class Main {
                     // Zarejestruj płatność czynszu
                     System.out.println("Podaj numer mieszkania: ");
                     apartmentNumber = scanner.nextInt();
-                    scanner.nextLine(); // clear scannera
+                    scanner.nextLine();
                     Apartment apt = hoa.findApartmentByNumber(apartmentNumber);
                     if (apt != null) {
                         System.out.println("Podaj kwotę płatności: ");
                         double amount = scanner.nextDouble();
-                        scanner.nextLine(); // clear scannera
+                        scanner.nextLine();
                         System.out.println("Wybierz typ płatności (CASH, BLIK, CARD): ");
                         String paymentTypeStr = scanner.nextLine();
                         PaymentType paymentType = PaymentType.valueOf(paymentTypeStr.toUpperCase());
@@ -128,7 +131,7 @@ public class Main {
                     // Wyświetl historię płatności
                     System.out.println("Podaj numer mieszkania: ");
                     apartmentNumber = scanner.nextInt();
-                    scanner.nextLine(); // clear scannera
+                    scanner.nextLine();
                     Apartment aptForHistory = hoa.findApartmentByNumber(apartmentNumber);
                     if (aptForHistory != null) {
                         aptForHistory.displayPaymentHistory();
@@ -138,6 +141,71 @@ public class Main {
                     break;
 
                 case 7:
+                    // Zarządzaj zgłoszeniami serwisowymi
+                    System.out.println("Wybierz opcję:");
+                    System.out.println("1 - Dodaj zgłoszenie serwisowe");
+                    System.out.println("2 - Wyświetl zgłoszenia serwisowe");
+                    System.out.println("3 - Usuń zgłoszenie serwisowe");
+                    int serviceChoice = scanner.nextInt();
+                    scanner.nextLine();
+
+                    switch (serviceChoice) {
+                        case 1:
+                            // Dodaj zgłoszenie serwisowe
+                            System.out.println("Podaj numer mieszkania: ");
+                            int aptNumForRequest = scanner.nextInt();
+                            scanner.nextLine();
+                            Apartment aptForRequest = hoa.findApartmentByNumber(aptNumForRequest);
+                            if (aptForRequest != null) {
+                                System.out.println("Podaj opis uszkodzenia: ");
+                                String description = scanner.nextLine();
+                                System.out.println("Wybierz typ zgłoszenia (DAMAGE, RENOVATION, CONSERVATION): ");
+                                String reportTypeStr = scanner.nextLine();
+                                ReportType reportType = ReportType.valueOf(reportTypeStr.toUpperCase());
+                                ServiceRequest request = new ServiceRequest(aptForRequest, description, LocalDate.now(), reportType);
+                                hoa.addServiceRequest(request);
+                            } else {
+                                System.out.println("Mieszkanie nie znalezione.");
+                            }
+                            break;
+                        case 2:
+                            // Wyświetl zgłoszenia serwisowe
+                            hoa.displayServiceRequests();
+                            break;
+                        case 3:
+                            // Usuń zgłoszenie serwisowe
+                            System.out.println("Podaj numer mieszkania: ");
+                            int aptNumForRemoval = scanner.nextInt();
+                            scanner.nextLine();
+                            List<ServiceRequest> requests = hoa.findServiceRequestsByApartmentNumber(aptNumForRemoval);
+                            if (!requests.isEmpty()) {
+                                System.out.println("Zgłoszenia dla mieszkania " + aptNumForRemoval + ":");
+                                for (int i = 0; i < requests.size(); i++) {
+                                    System.out.println((i + 1) + ". " + requests.get(i).getDamageDescription());
+                                }
+                                System.out.println("Wybierz numer zgłoszenia do usunięcia: ");
+                                int requestForRemoval = scanner.nextInt();
+                                scanner.nextLine();
+                                if (requestForRemoval > 0 && requestForRemoval <= requests.size()) {
+                                    hoa.removeServiceRequest(requests.get(requestForRemoval - 1));
+                                } else {
+                                    System.out.println("Nieprawidłowy numer zgłoszenia.");
+                                }
+                            } else {
+                                System.out.println("Brak zgłoszeń dla tego mieszkania.");
+                            }
+                            break;
+                        default:
+                            System.out.println("Nieprawidłowy wybór.");
+                    }
+                    break;
+
+                case 8:
+                    // Generuj raport finansowy
+                    hoa.generateFinancialReport();
+                    break;
+
+                case 9:
                     System.out.println("Kończenie programu...");
                     return;
                 default:

@@ -43,7 +43,7 @@ public class Apartment {
         tenants.remove(tenant);
         System.out.println("Usunięto lokatora: " + tenant.getName() + " " + tenant.getSurname());
     }
-    // returns list
+    // getter
     public List<Tenant> getTenants() {
         return tenants;
     }
@@ -80,6 +80,17 @@ public class Apartment {
             }
         }
     }
+
+    // calculating rent payments czy cos
+    public double getTotalRentCollected() {
+        double total = 0;
+        for (Payment payment : payments) {
+            total += payment.getPrice();
+        }
+        return total;
+    }
+
+
 
     public String getAddress() {
         return address;

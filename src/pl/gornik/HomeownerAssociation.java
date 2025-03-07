@@ -1,5 +1,6 @@
 package pl.gornik;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeownerAssociation {
@@ -45,7 +46,43 @@ public class HomeownerAssociation {
 
     public void removeServiceRequest(ServiceRequest request){serviceRequests.remove(request);}
 
-    //
-    //public List<ServiceRequest> getServiceRequestsByType(ReportType type) {
-    //public List<ServiceRequest> getAllServiceRequests() {
+    public void displayServiceRequests() {
+        if (serviceRequests.isEmpty()) {
+            System.out.println("Nie znaleziono zgłoszeń serwisowych");
+        } else {
+            System.out.println("ZGŁOSZENIA SERWISOWE:");
+            for (ServiceRequest request : serviceRequests) {
+                System.out.println("Mieszkanie nr: " + request.getApartment().getNumber() +
+                        ", Opis zgłoszenia: " + request.getDamageDescription() +
+                        ", Typ: " + request.getReportType() +
+                        ", Data: " + request.getReportDate());
+            }
+        }
+    }
+
+    public List<ServiceRequest> findServiceRequestsByApartmentNumber(int apartmentNumber) {
+        List<ServiceRequest> requests = new ArrayList<>();
+        for (ServiceRequest request : serviceRequests) {
+            if (request.getApartment().getNumber() == apartmentNumber) {
+                requests.add(request);
+            }
+        }
+        return requests;
+    }
+
+    public void generateFinancialReport() {
+        double totalRentCollected = 0;
+
+        System.out.println("Financial Report:");
+        for (Apartment apartment : apartments) {
+            double rentCollected = apartment.getTotalRentCollected();
+            totalRentCollected += rentCollected;
+
+            System.out.println("Apartment " + apartment.getNumber() + ":\n");
+            System.out.println("Zebrany czynsz: " + rentCollected);
+        }
+
+        System.out.println("\nPodsumowanie:");
+        System.out.println("Całość finansów: " + totalRentCollected);
+    }
 }
