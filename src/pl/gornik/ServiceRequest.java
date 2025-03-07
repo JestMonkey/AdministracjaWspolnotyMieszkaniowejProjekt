@@ -15,7 +15,21 @@ public class ServiceRequest {
         this.reportType = reportType;
     }
 
+
+
     public ReportType getReportType(){
         return reportType;
+    }
+
+    public Apartment getApartment() {
+        return apartment;
+    }
+
+    public String getDamageDescription() {
+        return damageDescription;
+    }
+
+    public LocalDate getReportDate() {
+        return reportDate;
     }
 }
